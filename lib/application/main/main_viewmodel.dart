@@ -1,9 +1,10 @@
+import 'package:abas_desktop/application/main/widgets/main_widget.dart';
 import 'package:abas_desktop/application/processo.dart';
 import 'package:abas_desktop/application/programa.dart';
 import 'package:flutter/material.dart';
 
 class MainViewModel extends ChangeNotifier {
-  final List<Processo> processos = [];
+  final List<Processo> processos = [Processo(MainWidget())]; // PID 1
   int selecionado = 0;
 
   void selecionar(int index) {
@@ -12,7 +13,8 @@ class MainViewModel extends ChangeNotifier {
   }
 
   void abrir(Programa programa) {
-    processos[selecionado].programa = programa;
+    final pid = _indiceValido(selecionado);
+    processos[pid].programa = programa;
     notifyListeners();
   }
 
@@ -23,7 +25,20 @@ class MainViewModel extends ChangeNotifier {
   }
 
   void remover(int index) {
-    processos.remove(processos[index]);
+    final pid = _indiceValido(index);
+    processos.remove(processos[pid]);
     notifyListeners();
+  }
+
+  int _indiceValido(int index) {
+    if (index == 0) {
+      return 0;
+    }
+
+    if (processos.asMap().containsKey(index)) {
+      return index;
+    }
+
+    return _indiceValido(index-1);
   }
 }

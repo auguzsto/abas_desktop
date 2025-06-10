@@ -11,6 +11,7 @@ class MainView extends StatelessWidget {
     final mainViewModel = context.watch<MainViewModel>();
 
     return DefaultTabController(
+      initialIndex: 0,
       animationDuration: Duration.zero,
       length: mainViewModel.processos.length,
       child: Scaffold(
@@ -24,6 +25,16 @@ class MainView extends StatelessWidget {
                 ],
               ),
             ),
+          ),
+          title: Row(
+            children: [
+              Text("Desktop"),
+              SizedBox(width: 70),
+              IconButton(
+                onPressed: () => mainViewModel.adicionar(MainWidget()),
+                icon: Icon(Icons.add),
+              ),
+            ],
           ),
           bottom: TabBar(
             indicatorColor: Colors.white,
@@ -45,16 +56,6 @@ class MainView extends StatelessWidget {
             }),
           ),
           foregroundColor: Colors.white,
-          title: Row(
-            children: [
-              Text("Desktop"),
-              SizedBox(width: 70),
-              IconButton(
-                onPressed: () => mainViewModel.adicionar(MainWidget()),
-                icon: Icon(Icons.add),
-              ),
-            ],
-          ),
         ),
         body: TabBarView(
           children: List.generate(
