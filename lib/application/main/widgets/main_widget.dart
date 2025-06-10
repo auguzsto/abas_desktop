@@ -12,7 +12,7 @@ class MainWidget extends StatelessWidget implements Programa {
     return Padding(
       padding: const EdgeInsets.all(12),
       child: Row(
-        spacing: 5,
+        spacing: 15,
         children: [
           AppIcon(programa: TextView()),
           AppIcon(programa: NavegadorView()),
