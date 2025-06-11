@@ -10,6 +10,9 @@ class NavegadorView extends StatefulWidget implements Programa {
   
   @override
   get titulo => "Navegador";
+  
+  @override
+  get icone => Icons.language;
 }
 
 class _NavegadorViewState extends State<NavegadorView> with AutomaticKeepAliveClientMixin {

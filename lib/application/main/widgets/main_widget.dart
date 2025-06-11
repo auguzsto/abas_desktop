@@ -1,3 +1,4 @@
+import 'package:abas_desktop/application/gerenciador_tarefas/gerenciador_tarefas_view.dart';
 import 'package:abas_desktop/application/main/widgets/appicon_widget.dart';
 import 'package:abas_desktop/application/navegador/navegador_view.dart';
 import 'package:abas_desktop/application/programa.dart';
@@ -16,6 +17,7 @@ class MainWidget extends StatelessWidget implements Programa {
         children: [
           AppIcon(programa: TextView()),
           AppIcon(programa: NavegadorView()),
+          AppIcon(programa: GerenciadorTarefasView()),
         ],
       ),
     );
@@ -23,4 +25,7 @@ class MainWidget extends StatelessWidget implements Programa {
   
   @override
   get titulo => "Nova aba";
+  
+  @override
+  get icone => Icons.create_new_folder_sharp;
 }

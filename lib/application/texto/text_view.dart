@@ -10,6 +10,9 @@ class TextView extends StatefulWidget implements Programa {
   
   @override
   get titulo => "Editor de texto";
+  
+  @override
+  get icone => Icons.edit_document;
 }
 
 class _TextViewState extends State<TextView> with AutomaticKeepAliveClientMixin {

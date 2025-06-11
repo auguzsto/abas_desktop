@@ -14,7 +14,7 @@ class AppIcon extends StatelessWidget {
       children: [
         IconButton.filled(
           onPressed: () => mainViewModel.abrir(programa),
-          icon: Icon(Icons.edit_document, size: 18),
+          icon: Icon(programa.icone, size: 18),
         ),
         Text(programa.titulo),
       ],

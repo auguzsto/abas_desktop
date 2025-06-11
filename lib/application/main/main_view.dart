@@ -48,7 +48,13 @@ class MainView extends StatelessWidget {
               return Row(
                 children: [
                   Tab(
-                    child: Text(mainViewModel.processos[index].programa.titulo)
+                    child: Row(
+                      spacing: 8,
+                      children: [
+                        Icon(mainViewModel.processos[index].programa.icone, size: 13),
+                        Text(mainViewModel.processos[index].programa.titulo)
+                      ],
+                    )
                   ),
                   IconButton(onPressed: () => mainViewModel.remover(index), icon: Icon(Icons.close, size: 18,))
                 ],
