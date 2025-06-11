@@ -13,6 +13,7 @@ class AppIcon extends StatelessWidget {
     return Column(
       children: [
         IconButton.filled(
+          style: ButtonStyle(backgroundColor: WidgetStateColor.resolveWith((states) => Color.fromARGB(255, 5, 12, 61))),
           onPressed: () => mainViewModel.abrir(programa),
           icon: Icon(programa.icone, size: 18),
         ),

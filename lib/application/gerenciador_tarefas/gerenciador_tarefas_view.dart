@@ -26,7 +26,7 @@ class _GerenciadorTarefasViewState extends State<GerenciadorTarefasView> {
       itemBuilder: (context, index) {
         final programa = mainViewModel.processos[index].programa;
         return ListTile(
-          leading: Icon(programa.icone),
+          leading: Icon(programa.icone, color: Color.fromARGB(255, 5, 12, 61)),
           title: Text(programa.titulo),
           subtitle: Text("PID ${index.toString()}"),
           trailing: IconButton(onPressed: () => mainViewModel.remover(index), icon: Icon(Icons.stop, color: Colors.red)),
