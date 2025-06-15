@@ -15,6 +15,7 @@ class MainView extends StatelessWidget {
       animationDuration: Duration.zero,
       length: mainViewModel.processos.length,
       child: Scaffold(
+        drawer: Drawer(),
         appBar: AppBar(
           flexibleSpace: Container(
             decoration: BoxDecoration(
@@ -26,40 +27,50 @@ class MainView extends StatelessWidget {
               ),
             ),
           ),
+          titleSpacing: 0,
           title: Row(
             children: [
-              Text("Desktop"),
-              SizedBox(width: 70),
+              Expanded(
+                child: TabBar(
+                  indicatorColor: Colors.white,
+                  labelColor: Colors.white,
+                  isScrollable: false,
+                  onTap: (value) => mainViewModel.selecionar(value),
+                  unselectedLabelColor: Colors.white,
+                  unselectedLabelStyle: TextStyle(fontSize: 10),
+                  dividerHeight: 0,
+                  labelPadding: EdgeInsets.only(top: 8, left: 10),
+                  tabs: List.generate(mainViewModel.processos.length, (index) {
+                    return Row(
+                      children: [
+                        Tab(
+                          child: Row(
+                            spacing: 8,
+                            children: [
+                              Icon(
+                                mainViewModel.processos[index].programa.icone,
+                                size: 13,
+                              ),
+                              Text(
+                                mainViewModel.processos[index].programa.titulo,
+                              ),
+                            ],
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: () => mainViewModel.remover(index),
+                          icon: Icon(Icons.close, size: 18),
+                        ),
+                      ],
+                    );
+                  }),
+                ),
+              ),
               IconButton(
                 onPressed: () => mainViewModel.adicionar(MainWidget()),
                 icon: Icon(Icons.add),
               ),
             ],
-          ),
-          bottom: TabBar(
-            indicatorColor: Colors.white,
-            labelColor: Colors.white,
-            dividerColor: Colors.white,
-            isScrollable: false,
-            onTap: (value) => mainViewModel.selecionar(value),
-            unselectedLabelColor: Colors.white,
-            unselectedLabelStyle: TextStyle(fontSize: 10),
-            tabs: List.generate(mainViewModel.processos.length, (index) {
-              return Row(
-                children: [
-                  Tab(
-                    child: Row(
-                      spacing: 8,
-                      children: [
-                        Icon(mainViewModel.processos[index].programa.icone, size: 13),
-                        Text(mainViewModel.processos[index].programa.titulo)
-                      ],
-                    )
-                  ),
-                  IconButton(onPressed: () => mainViewModel.remover(index), icon: Icon(Icons.close, size: 18,))
-                ],
-              );
-            }),
           ),
           foregroundColor: Colors.white,
         ),
