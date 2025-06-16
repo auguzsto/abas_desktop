@@ -2,6 +2,7 @@ import 'package:abas_desktop/application/main/main_viewmodel.dart';
 import 'package:abas_desktop/application/main/widgets/main_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:window_manager/window_manager.dart';
 
 class MainView extends StatelessWidget {
   const MainView({super.key});
@@ -17,6 +18,26 @@ class MainView extends StatelessWidget {
       child: Scaffold(
         drawer: Drawer(),
         appBar: AppBar(
+          actions: [
+            IconButton(
+              onLongPress: () => windowManager.startDragging(),
+              onPressed: () => windowManager.startDragging(),
+              icon: Icon(Icons.back_hand),
+            ),
+            IconButton(
+              onPressed: () async {
+                if (await windowManager.isMaximized()) {
+                  return windowManager.unmaximize();
+                }
+                return windowManager.maximize();
+              },
+              icon: Icon(Icons.rectangle_outlined),
+            ),
+            IconButton(
+              onPressed: () => windowManager.close(),
+              icon: Icon(Icons.close),
+            ),
+          ],
           flexibleSpace: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -31,6 +52,7 @@ class MainView extends StatelessWidget {
           title: Row(
             children: [
               Expanded(
+                flex: 1,
                 child: TabBar(
                   indicatorColor: Colors.white,
                   labelColor: Colors.white,
